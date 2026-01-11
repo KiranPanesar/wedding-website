@@ -1,0 +1,211 @@
+@font-face {
+  font-family: 'Gold Coast';
+  src: url('../fonts/Gold Coast Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Signpainter Housescript';
+  src: url('../fonts/SignPainterHouseScript.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  background-color: #e4d3b3;
+  padding: 30px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+body {
+  background-color: #162716;
+  font-family: 'Gold Coast', serif;
+  color: #e4d3b3;
+  margin: 0;
+  border-radius: 20px;
+  min-height: calc(100vh - 60px);
+  box-sizing: border-box;
+}
+* {
+  text-shadow: 3px 3px 3px rgba(13,22,14,0.4);
+}
+section {
+  padding-top: 100px;
+}
+.subtitle {
+  text-align: center;
+  font-family: 'Signpainter Housescript', serif;
+}
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 140px;
+}
+.navbar {
+  background-color: transparent !important;
+}
+.hero-title {
+  font-size: 100px;
+  text-align: center;
+}
+.hero-subtitle {
+  font-size: 70px;
+  margin-top: -30px;
+  text-align: center;
+}
+.info-row {
+  margin-bottom: 3rem;
+  align-items: stretch;
+}
+.info-column {
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+.info-column h3 {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.info-column .subtitle {
+  font-size: 30px;
+  margin-top: -20px;
+}
+.info-column img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.placeholder-image {
+  width: 100%;
+  height: 300px;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.placeholder-image span {
+  text-shadow: none;
+  color: #adb5bd;
+}
+.rsvp-button {
+  margin-top: 2rem;
+}
+.rsvp-button .btn {
+  background-color: #43152b;
+  border: 2px solid #e4d3b3;
+  color: #e4d3b3;
+  font-family: 'Gold Coast', serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 18px 40px;
+  transform: skew(-10deg);
+  border-radius: 0;
+}
+.rsvp-button .btn:hover {
+  background-color: #43152b;
+  color: #e4d3b3;
+}
+.rsvp-button .btn:focus {
+background-color: #43152b;
+border: 2px solid #e4d3b3;
+}
+
+.rsvp-button .btn span {
+  display: inline-block;
+  transform: skew(10deg);
+}
+.more-info-button .btn {
+  background-color: transparent;
+  border: none;
+  color: #e4d3b3;
+  font-family: 'Signpainter Housescript', serif;
+  font-size: 25px;
+  opacity: 0.9;
+  font-weight: 700;
+  margin-top: -10px;
+}
+.more-info-button .btn:hover {
+  color: #c1b398;
+}
+.more-info-button .btn:focus {
+  background-color: transparent;
+}
+
+/* More Info Section */
+.more-info-header {
+  text-align: center;
+  font-size: 60px;
+}
+.more-info-column-header {
+  font-size: 30px;
+}
+.more-info-text {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.more-info-text-highlight {
+  font-family: 'Signpainter Housescript', serif;
+  font-size: 25px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.faq-section {
+  padding-bottom: 30px;
+}
+
+.faq-accordion .accordion-item {
+  background-color: transparent;
+  border: 1px solid #e4d3b3;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
+.faq-accordion .accordion-button {
+  background-color: transparent;
+  color: #e4d3b3;
+  font-family: 'Gold Coast', serif;
+  font-size: 20px;
+  border: none;
+  box-shadow: none;
+  padding: 1rem 1.25rem;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: rgba(228, 211, 179, 0.1);
+  color: #e4d3b3;
+}
+
+.faq-accordion .accordion-button:focus {
+  border-color: #e4d3b3;
+  box-shadow: 0 0 0 0.25rem rgba(228, 211, 179, 0.25);
+}
+
+.faq-accordion .accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e4d3b3'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  filter: none;
+}
+
+.faq-accordion .accordion-body {
+  background-color: transparent;
+  color: #e4d3b3;
+  font-family: 'Gold Coast', serif;
+  font-size: 18px;
+  opacity: 0.8;
+  padding: 1rem 1.25rem;
+}

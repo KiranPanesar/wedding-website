@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane & Kiran - Wedding</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">JANE AND KIRAN</h1>
+            <p class="subtitle hero-subtitle">Where It All Began</p>
+            
+            <!-- Three Column Row -->
+            <div class="row info-row">
+              <div class="col-md-1"></div>
+              <div class="col-md-4 info-column">
+                    <h3>Beatnik West Town</h3>
+                    <h3 class="subtitle">1604 West Chicago Ave</p>
+                </div>
+                <div class="col-md-2 info-column">
+                  <img src="img/tini.png" alt="Martini Glasses Cheersing">
+                </div> 
+                <div class="col-md-4 info-column">
+                    <h3>October 17, 2026</h3>
+                    <h3 class="subtitle">6:30 til late</p>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+            <!-- RSVP Button -->
+            <div class="text-center rsvp-button">
+                <button class="btn btn-primary btn-lg px-5 py-3"><span>RSVP</span></button>
+            </div>
+            <div class="text-center more-info-button">
+              <button class="btn btn-primary btn-lg px-5 py-3"><span>More Info</span></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="more-info-section">
+      <div class="container">
+        <h1 class="more-info-header">More Info</h1>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <h2 class="more-info-column-header">Location</h2>
+            <p class="more-info-text">
+              Beatnik West Town<br>
+              <!-- <p class="more-info-text-highlight" style="margin-top: -10px;"> -->
+                1604 West Chicago Ave<br>
+                <!-- <br/> -->
+                Chicago, IL 60622
+              <!-- </p> -->
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h2 class="more-info-column-header">Itinerary</h2>
+            <p class="more-info-text">
+              6:30 PM . . . . . <span class="more-info-text-highlight">Arrival & Cocktails</span>
+              <br>
+              7:00 PM . . . . . <span class="more-info-text-highlight">Ceremony</span>
+              <br>
+              7:30 PM . . . . . <span class="more-info-text-highlight">Cocktails</span>
+              <br>
+              8:15 PM . . . . . . <span class="more-info-text-highlight">Dinner</span>
+              <br>
+              9:00 PM til 12:30 AM . . . . <span class="more-info-text-highlight">Party</span>
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h2 class="more-info-column-header">Dress Code</h2>
+            <p class="more-info-text-highlight">
+              Cocktail Attire, Tie Optional
+            </p>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <h1 class="more-info-header">Frequently Asked Questions</h1>
+        <div class="accordion faq-accordion" id="faqAccordion">
+          <!-- FAQ items will be generated here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- FAQ Data and Generator -->
+    <script>
+      // FAQ Data - Just add new objects to this array to add more FAQs
+      const faqData = [
+        {
+          question: "What time should I arrive?",
+          answer: "Please arrive at 6:30 PM for welcome cocktails. The ceremony will begin promptly at 7:00 PM."
+        },
+        {
+          question: "Where should I stay?",
+          answer: "We recommend staying at the Hyatt Place Wicker Park, Hotel Robey, or Ray's B&B. All are a short taxi or bus ride from the venue. We are not offering hotel block reservations."
+        },
+        {
+          question: "Can children attend?",
+          answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
+        },
+        {
+          question: "Can I bring a plus one?",
+          answer: "Please check your invitation for details about plus ones. If you have any questions, feel free to reach out to us directly."
+        },
+        {
+          question: "What should I wear?",
+          answer: "Lookin' sharp! Cocktail attire, but feel free to skip the tie."
+        },
+        {
+          question: "How can I get to the venue?",
+          answer: "The whole evening is happening at Beatnik West Town. We recommend taking a taxi to the venue, or the bus – Beantik is conveniently located on Ashland & Chicago Ave, the intersection of two major bus lines."
+        }
+      ];
+
+      // Function to generate accordion HTML
+      function generateFAQAccordion() {
+        const accordionContainer = document.getElementById('faqAccordion');
+        
+        faqData.forEach((faq, index) => {
+          const itemNumber = index + 1;
+          const headingId = `heading${itemNumber}`;
+          const collapseId = `collapse${itemNumber}`;
+          
+          const accordionItem = document.createElement('div');
+          accordionItem.className = 'accordion-item';
+          accordionItem.innerHTML = `
+            <h2 class="accordion-header" id="${headingId}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                ${faq.question}
+              </button>
+            </h2>
+            <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                ${faq.answer}
+              </div>
+            </div>
+          `;
+          
+          accordionContainer.appendChild(accordionItem);
+        });
+      }
+
+      // Generate accordion when page loads
+      document.addEventListener('DOMContentLoaded', generateFAQAccordion);
+    </script>
+</body>
+</html>
