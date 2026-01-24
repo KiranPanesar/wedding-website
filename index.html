@@ -11,8 +11,14 @@
 <body>
     <section class="hero-section">
         <div class="container">
+          <div class="col-md-2 info-column" id="tiny-image-container-top">
+            <img src="img/tini.png" alt="Martini Glasses Cheersing">
+          </div> 
+
+          <div class="hero-container">
             <h1 class="hero-title">JANE AND KIRAN</h1>
             <p class="subtitle hero-subtitle">Where It All Began</p>
+          </div>
             
             <!-- Three Column Row -->
             <div class="row info-row">
@@ -21,9 +27,15 @@
                     <h3>Beatnik West Town</h3>
                     <h3 class="subtitle">1604 West Chicago Ave</p>
                 </div>
-                <div class="col-md-2 info-column">
+                <div class="col-md-2 info-column" id="tiny-image-container">
                   <img src="img/tini.png" alt="Martini Glasses Cheersing">
-                </div> 
+                </div>
+                <!-- RSVP Button Mobile -->
+                <div id="rsvp-container-mobile">
+                  <div class="text-center rsvp-button">
+                    <button class="btn btn-primary btn-lg px-5 py-3"><span>RSVP</span></button>
+                  </div>
+                </div>
                 <div class="col-md-4 info-column">
                     <h3>October 17, 2026</h3>
                     <h3 class="subtitle">6:30 til late</p>
@@ -31,12 +43,14 @@
                 <div class="col-md-1"></div>
             </div>
 
-            <!-- RSVP Button -->
-            <div class="text-center rsvp-button">
+            <!-- RSVP Button Desktop -->
+            <div id="rsvp-container-desktop">
+              <div class="text-center rsvp-button">
                 <button class="btn btn-primary btn-lg px-5 py-3"><span>RSVP</span></button>
-            </div>
-            <div class="text-center more-info-button">
-              <button class="btn btn-primary btn-lg px-5 py-3"><span>More Info</span></button>
+              </div>
+              <div class="text-center more-info-button">
+                <button class="btn btn-primary btn-lg px-5 py-3"><span>More Info</span></button>
+              </div>
             </div>
         </div>
     </section>

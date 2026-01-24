@@ -11,7 +11,7 @@
   font-style: normal;
 }
 html {
-  background-color: #e4d3b3;
+  background-color: #F4E8D2;
   padding: 30px;
   min-height: 100vh;
   box-sizing: border-box;
@@ -19,7 +19,7 @@ html {
 body {
   background-color: #162716;
   font-family: 'Gold Coast', serif;
-  color: #e4d3b3;
+  color: #F4E8D2;
   margin: 0;
   border-radius: 20px;
   min-height: calc(100vh - 60px);
@@ -39,7 +39,10 @@ section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 140px;
+  padding-top: 80px;
+  @media (min-width: 768px) {
+    padding-top: 140px;
+  }
 }
 .navbar {
   background-color: transparent !important;
@@ -96,11 +99,15 @@ section {
 }
 .rsvp-button {
   margin-top: 2rem;
+  @media (max-width: 768px) {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
 }
 .rsvp-button .btn {
   background-color: #43152b;
-  border: 2px solid #e4d3b3;
-  color: #e4d3b3;
+  border: 2px solid #F4E8D2;
+  color: #F4E8D2;
   font-family: 'Gold Coast', serif;
   font-size: 30px;
   font-weight: 700;
@@ -111,11 +118,11 @@ section {
 }
 .rsvp-button .btn:hover {
   background-color: #43152b;
-  color: #e4d3b3;
+  color: #F4E8D2;
 }
 .rsvp-button .btn:focus {
 background-color: #43152b;
-border: 2px solid #e4d3b3;
+border: 2px solid #F4E8D2;
 }
 
 .rsvp-button .btn span {
@@ -125,7 +132,7 @@ border: 2px solid #e4d3b3;
 .more-info-button .btn {
   background-color: transparent;
   border: none;
-  color: #e4d3b3;
+  color: #F4E8D2;
   font-family: 'Signpainter Housescript', serif;
   font-size: 25px;
   opacity: 0.9;
@@ -133,7 +140,7 @@ border: 2px solid #e4d3b3;
   margin-top: -10px;
 }
 .more-info-button .btn:hover {
-  color: #c1b398;
+  color: #d5c8b1;
 }
 .more-info-button .btn:focus {
   background-color: transparent;
@@ -195,14 +202,14 @@ border: 2px solid #e4d3b3;
 
 .faq-accordion .accordion-item {
   background-color: transparent;
-  border: 1px solid #e4d3b3;
+  border: 1px solid #F4E8D2;
   border-radius: 0;
   margin-bottom: 1rem;
 }
 
 .faq-accordion .accordion-button {
   background-color: transparent;
-  color: #e4d3b3;
+  color: #F4E8D2;
   font-family: 'Gold Coast', serif;
   font-size: 20px;
   border: none;
@@ -212,24 +219,66 @@ border: 2px solid #e4d3b3;
 
 .faq-accordion .accordion-button:not(.collapsed) {
   background-color: rgba(228, 211, 179, 0.1);
-  color: #e4d3b3;
+  color: #F4E8D2;
 }
 
 .faq-accordion .accordion-button:focus {
-  border-color: #e4d3b3;
+  border-color: #F4E8D2;
   box-shadow: 0 0 0 0.25rem rgba(228, 211, 179, 0.25);
 }
 
 .faq-accordion .accordion-button::after {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e4d3b3'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23F4E8D2'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   filter: none;
 }
 
 .faq-accordion .accordion-body {
   background-color: transparent;
-  color: #e4d3b3;
+  color: #F4E8D2;
   font-family: 'Gold Coast', serif;
   font-size: 18px;
   opacity: 0.8;
   padding: 1rem 1.25rem;
+}
+
+#tiny-image-container {
+  padding-left: 30px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+#tiny-image-container-top {
+  display: none;
+  margin-bottom: 30px;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+#tiny-image-container-top img {
+  max-width: 50%;
+  height: auto;
+}
+#rsvp-container-mobile {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+#rsvp-container-desktop {
+  display: block;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 90px;
+    line-height: 1.0;
+  }
+  .hero-subtitle {
+    font-size: 40px;
+    margin-top: -10px;
+    white-space: nowrap;
+  }
 }
