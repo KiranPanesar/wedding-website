@@ -191,9 +191,6 @@ border: 2px solid #e4d3b3;
 
 .faq-section {
   padding-bottom: 30px;
-  background-image: linear-gradient(rgba(22, 39, 22, 0.95), rgba(22, 39, 22, 0.95)), url('../img/tile.jpg');
-  background-repeat: repeat;
-  background-attachment: local;
 }
 
 .faq-accordion .accordion-item {
