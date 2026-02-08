@@ -29,7 +29,7 @@ body {
   text-shadow: 3px 3px 3px rgba(13,22,14,0.4);
 }
 section {
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .subtitle {
   text-align: center;
@@ -154,7 +154,18 @@ border: 2px solid #F4E8D2;
 
 /* More Info Section */
 .more-info-section {
-  background-color: #162716;
+  /* background-color: #162716; */
+  background-image: url('../img/tile.jpg');
+  background-repeat: repeat;
+  background-size: 380px 380px; /* ~60% of tile (634×633) = ~40% smaller */
+  position: relative;
+}
+.more-info-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 39, 22, 0.97);
+  z-index: 1;
 }
 .more-info-section > * {
   position: relative;
@@ -242,6 +253,12 @@ border: 2px solid #F4E8D2;
   font-size: 18px;
   opacity: 0.8;
   padding: 1rem 1.25rem;
+  text-shadow: none;
+}
+
+.faq-accordion .accordion-body a {
+  color: #43152b;
+  text-decoration: underline;
   text-shadow: none;
 }
 

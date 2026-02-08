@@ -34,7 +34,7 @@
                 <!-- RSVP Button Mobile -->
                 <div id="rsvp-container-mobile">
                   <div class="text-center rsvp-button">
-                    <button class="btn btn-primary btn-lg px-5 py-3"><span>RSVP</span></button>
+                    <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
                   </div>
                 </div>
                 <div class="col-md-4 info-column">
@@ -117,32 +117,36 @@
       // FAQ Data - Just add new objects to this array to add more FAQs
       const faqData = [
         {
+          question: "Where should I stay?",
+          answer: "We recommend staying at the <a href='https://www.hyatt.com/hyatt-place/en-US/chizk-hyatt-place-chicago-wicker-park' target='_blank'>Hyatt Place Wicker Park</a>, <a href='https://www.therobey.com/' target='_blank'>The Robey</a>, or <a href='https://www.raysbucktownbandb.com/' target='_blank'>Ray's B&B</a>. All are a short taxi or bus ride from the venue. We are not offering hotel block reservations."
+        },
+        {
           question: "What time should I arrive?",
           answer: "Please arrive at 6:30 PM for welcome cocktails. The ceremony will begin promptly at 7:00 PM."
         },
-        {
-          question: "Where should I stay?",
-          answer: "We recommend staying at the Hyatt Place Wicker Park, Hotel Robey, or Ray's B&B. All are a short taxi or bus ride from the venue. We are not offering hotel block reservations."
-        },
-        {
-          question: "Can children attend?",
-          answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
-        },
-        {
-          question: "Can I bring a plus one?",
-          answer: "Please check your invitation for details about plus ones. If you have any questions, feel free to reach out to us directly."
-        },
+        // {
+        //   question: "Can children attend?",
+        //   answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
+        // },
+        // {
+        //   question: "Can I bring a plus one?",
+        //   answer: "Please check your invitation for details about plus ones. If you have any questions, feel free to reach out to us directly."
+        // },
         {
           question: "What should I wear?",
           answer: "Look sharp and stylish! Cocktail attire, but feel free to skip the tie."
         },
-        {
-          question: "How can I get to the venue?",
-          answer: "The whole evening is happening at Beatnik West Town. We recommend taking a taxi or the bus to the venue – Beantik is conveniently located on Ashland & Chicago Ave, the intersection of two major bus lines."
-        },
+        // {
+        //   question: "How can I get to the venue?",
+        //   answer: "The whole evening is happening at Beatnik West Town. We recommend taking a taxi or the bus to the venue – Beantik is conveniently located on Ashland & Chicago Ave, the intersection of two major bus lines."
+        // },
         {
           question: "What's with 'where it all began'?",
-          answer: "Our first date was at Beatnik! We first saw each other at the crosswalk crossing Chicago Ave, sat in the atrium area (and shortly got booted out for not having a reservation), and then enjoyed a drink at the bar."
+          answer: "Our first date was at Beatnik! We first saw each other at the Chicago Ave crosswalk, sat in the atrium area (and shortly got booted out for not having a reservation), and then enjoyed a drink at the bar."
+        },
+        {
+          question: "What if I still have questions?",
+          answer: "More information will be included in the formal invitation and RSVP. Until then, please feel free to reach out to us directly. We'd be happy to answer any questions you have."
         }
       ];
 
