@@ -225,11 +225,6 @@ border: 2px solid #F4E8D2;
   padding: 1rem 1.25rem;
 }
 
-.faq-accordion .accordion-button:not(.collapsed) {
-  /* background-color: blue; */
-  /* color: #F4E8D2; */
-}
-
 .faq-accordion .accordion-button:focus {
   border-color: #F4E8D2;
   /* box-shadow: 0 0 0 0.25rem rgba(228, 211, 179, 0.25); */
@@ -242,7 +237,7 @@ border: 2px solid #F4E8D2;
 
 .faq-accordion .accordion-body {
   background-color: #F4E8D2;
-  color: #360f21;
+  color: #162716;
   font-family: 'Gold Coast', serif;
   font-size: 18px;
   opacity: 0.8;
