@@ -47,17 +47,17 @@
             <!-- RSVP Button Desktop -->
             <div id="rsvp-container-desktop">
               <div class="text-center rsvp-button">
-                <button class="btn btn-primary btn-lg px-5 py-3"><span>RSVP</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
               </div>
               <div class="text-center more-info-button">
-                <button class="btn btn-primary btn-lg px-5 py-3"><span>More Info</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3"><span>Invitation & RSVP to Follow</span></button>
               </div>
             </div>
         </div>
     </section>
 
-    <section class="more-info-section">
-      <div class="container">
+    <section class="more-info-section" id="more-info-section">
+      <div class="container" style="display: none;">
         <h1 class="more-info-header">More Info</h1>
         <div class="row">
           <div class="col-md-2"></div>
@@ -97,7 +97,13 @@
       </div>
       <section class="faq-section">
         <div class="container">
-          <h1 class="more-info-header">Frequently Asked Questions</h1>
+          <div class="faq-title-container">
+            <div style="max-width: 10vw; margin: 0 auto;">
+              <img src="img/tini.png" alt="FAQ Title" class="faq-title" style="width:100%; height:auto; display:block;">
+            </div>
+            <h1 class="more-info-header">The Details</h1>
+            <h2 class="more-info-subheader">You've saved the date, now plan ahead!</h2>
+          </div>
           <div class="accordion faq-accordion" id="faqAccordion">
             <!-- FAQ items will be generated here by JavaScript -->
           </div>
@@ -173,6 +179,13 @@
 
       // Generate accordion when page loads
       document.addEventListener('DOMContentLoaded', generateFAQAccordion);
+
+      function showMoreInfo() {
+      const moreInfoSection = document.getElementById('more-info-section');
+      if (moreInfoSection) {
+        moreInfoSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      }
     </script>
 </body>
 </html>

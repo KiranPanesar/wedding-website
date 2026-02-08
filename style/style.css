@@ -29,7 +29,7 @@ body {
   text-shadow: 3px 3px 3px rgba(13,22,14,0.4);
 }
 section {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 .subtitle {
   text-align: center;
@@ -77,7 +77,6 @@ section {
   min-height: 100%;
 }
 .info-column h3 {
-  text-transform: capitalize;
   margin-bottom: 1rem;
 }
 .info-column .subtitle {
@@ -155,24 +154,8 @@ border: 2px solid #F4E8D2;
 
 /* More Info Section */
 .more-info-section {
-  background-image: linear-gradient(to bottom, rgba(22, 39, 22, 0.7) 0%, rgba(22, 39, 22, 0.95) 50%), url('../img/tile.jpg');
-  background-repeat: repeat;
-  background-attachment: local;
-  position: relative;
+  background-color: #162716;
 }
-
-.more-info-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70%;
-  background: linear-gradient(to bottom, rgba(22, 39, 22, 1) 0%, rgba(22, 39, 22, 0.1) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .more-info-section > * {
   position: relative;
   z-index: 2;
@@ -197,6 +180,23 @@ border: 2px solid #F4E8D2;
   opacity: 0.8;
 }
 
+.faq-title-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.faq-title-container h1 {
+  font-family: 'Signpainter Housescript', serif;
+  font-size: 100px;
+}
+
+.faq-title-container h2 {
+  color: #F4E8D2;
+  font-size: 20px;
+  text-shadow: none;
+  margin-top: -20px;
+}
+
 /* FAQ Accordion */
 .faq-accordion {
   max-width: 800px;
@@ -208,15 +208,16 @@ border: 2px solid #F4E8D2;
 }
 
 .faq-accordion .accordion-item {
-  background-color: transparent;
+  background-color: #162716;
   border: 1px solid #F4E8D2;
   border-radius: 0;
   margin-bottom: 1rem;
 }
 
 .faq-accordion .accordion-button {
-  background-color: transparent;
+  background-color: #4f6f53;
   color: #F4E8D2;
+  text-shadow: none;
   font-family: 'Gold Coast', serif;
   font-size: 20px;
   border: none;
@@ -225,13 +226,13 @@ border: 2px solid #F4E8D2;
 }
 
 .faq-accordion .accordion-button:not(.collapsed) {
-  background-color: rgba(228, 211, 179, 0.1);
-  color: #F4E8D2;
+  /* background-color: blue; */
+  /* color: #F4E8D2; */
 }
 
 .faq-accordion .accordion-button:focus {
   border-color: #F4E8D2;
-  box-shadow: 0 0 0 0.25rem rgba(228, 211, 179, 0.25);
+  /* box-shadow: 0 0 0 0.25rem rgba(228, 211, 179, 0.25); */
 }
 
 .faq-accordion .accordion-button::after {
@@ -240,12 +241,13 @@ border: 2px solid #F4E8D2;
 }
 
 .faq-accordion .accordion-body {
-  background-color: transparent;
-  color: #F4E8D2;
+  background-color: #F4E8D2;
+  color: #360f21;
   font-family: 'Gold Coast', serif;
   font-size: 18px;
   opacity: 0.8;
   padding: 1rem 1.25rem;
+  text-shadow: none;
 }
 
 #tiny-image-container {
