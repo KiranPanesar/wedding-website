@@ -218,6 +218,24 @@ border: 2px solid #F4E8D2;
   padding-bottom: 30px;
 }
 
+.faq-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.faq-footer-heading {
+  font-family: 'Signpainter Housescript', serif;
+  font-size: 40px;
+  margin-bottom: 0.25rem;
+}
+
+.faq-footer-body {
+  font-family: 'Gold Coast', serif;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
 .faq-accordion .accordion-item {
   background-color: #162716;
   border: 1px solid #F4E8D2;

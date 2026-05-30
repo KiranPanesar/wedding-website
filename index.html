@@ -34,7 +34,7 @@
                 <!-- RSVP Button Mobile -->
                 <div id="rsvp-container-mobile">
                   <div class="text-center rsvp-button">
-                    <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
+                    <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/kiran-and-jane/rsvp', '_blank')"><span>RSVP</span></button>
                   </div>
                 </div>
                 <div class="col-md-4 info-column">
@@ -47,10 +47,10 @@
             <!-- RSVP Button Desktop -->
             <div id="rsvp-container-desktop">
               <div class="text-center rsvp-button">
-                <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/kiran-and-jane', '_blank')"><span>RSVP</span></button>
               </div>
               <div class="text-center more-info-button">
-                <button class="btn btn-primary btn-lg px-5 py-3"><span>Invitation & RSVP to Follow</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>Please complete by Sept 23</span></button>
               </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
           <div class="col-md-1"></div>
         </div>
       </div>
-      <section class="faq-section">
+      <section class="faq-section" id="faq-section">
         <div class="container">
           <div class="faq-title-container">
             <h1 class="more-info-header">The Details</h1>
@@ -103,6 +103,10 @@
           </div>
           <div class="accordion faq-accordion" id="faqAccordion">
             <!-- FAQ items will be generated here by JavaScript -->
+          </div>
+          <div class="faq-footer">
+            <p class="faq-footer-heading">Further Questions?</p>
+            <p class="faq-footer-body">Feel free to reach out to us directly and we'd be happy to answer any questions you have.</p>
           </div>
         </div>
       </section>  
@@ -124,17 +128,21 @@
           question: "What time should I arrive?",
           answer: "Please arrive at 6:30 PM for welcome cocktails. The ceremony will begin promptly at 7:00 PM."
         },
-        // {
-        //   question: "Can children attend?",
-        //   answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
-        // },
-        // {
-        //   question: "Can I bring a plus one?",
-        //   answer: "Please check your invitation for details about plus ones. If you have any questions, feel free to reach out to us directly."
-        // },
+        {
+          question: "Can children attend?",
+          answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
+        },
+        {
+          question: "Can I bring a plus one?",
+          answer: "Please check your <a href='https://withjoy.com/jane-and-kiran/rsvp' target='_blank'>RSVP page</a> for details about plus ones. If you have any questions, feel free to reach out to us directly."
+        },
         {
           question: "What should I wear?",
           answer: "Look sharp and stylish! Cocktail attire, but feel free to skip the tie."
+        },
+        {
+          question: "What's on the menu?",
+          answer: "Dinner will be served family style and feature a variety of Beatnik's delicious global fare, alongside a wonderful beverage program, and followed by dessert (or two)."
         },
         // {
         //   question: "How can I get to the venue?",
@@ -144,10 +152,6 @@
           question: "What's with 'where it all began'?",
           answer: "Our first date was at Beatnik! We first saw each other at the Chicago Ave crosswalk, sat in the atrium area (and shortly got booted out for not having a reservation), and then enjoyed a drink at the bar."
         },
-        {
-          question: "What if I still have questions?",
-          answer: "More information will be included in the formal invitation and RSVP. Until then, please feel free to reach out to us directly. We'd be happy to answer any questions you have."
-        }
       ];
 
       // Function to generate accordion HTML
