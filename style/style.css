@@ -229,12 +229,17 @@ border: 2px solid #F4E8D2;
   padding: 2rem;
 }
 .polaroid {
-  background-color: #f2ece1;
+  background-color: #e6ddd0;
   padding: 17px 17px 12px 17px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   display: inline-block;
   max-width: 100%;
   container-type: inline-size;
+}
+.polaroid-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .polaroid-group {
   display: flex;
@@ -242,12 +247,15 @@ border: 2px solid #F4E8D2;
   justify-content: center;
   width: 100%;
 }
+.polaroid-group-bottom {
+  margin-top: -7%;
+}
 .polaroid-group .polaroid {
   width: 40%;
   flex-shrink: 0;
 }
 .polaroid-left {
-  transform: rotate(4deg);
+  transform: rotate(4deg) translateX(-16%) translateY(15%);
   z-index: 1;
   margin-right: -8%;
   margin-top: 5%;
@@ -261,6 +269,17 @@ border: 2px solid #F4E8D2;
   z-index: 2;
   margin-left: -8%;
   margin-top: 10%;
+}
+.polaroid-bottom-left {
+  transform: rotate(-3deg);
+  z-index: 4;
+  margin-right: -6%;
+  margin-top: 2%;
+}
+.polaroid-bottom-right {
+  transform: rotate(5deg);
+  z-index: 5;
+  margin-top: 5%;
 }
 .polaroid-img-placeholder {
   width: 100%;
@@ -288,21 +307,7 @@ border: 2px solid #F4E8D2;
 /* Chicago / While You're Here Section */
 .chicago-section {
   padding-top: 0;
-  background-image: url('../img/tile.jpg');
-  background-repeat: repeat;
-  background-size: 380px 380px;
-  position: relative;
-}
-.chicago-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(22, 39, 22, 0.97);
-  z-index: 1;
-}
-.chicago-section > * {
-  position: relative;
-  z-index: 2;
+  background-color: #162716;
 }
 .chicago-content-col {
   display: flex;
@@ -548,10 +553,15 @@ border: 2px solid #F4E8D2;
   padding-bottom: 30px;
 }
 
+.contact-section {
+  background-color: #162716;
+}
+.contact-section .container {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
 .faq-footer {
   text-align: center;
-  margin-top: 2rem;
-  padding-bottom: 1rem;
 }
 
 .faq-footer-heading {
