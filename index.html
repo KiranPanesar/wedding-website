@@ -356,37 +356,53 @@
           cardList.style.height = cardList.offsetHeight + 'px';
         });
 
-        // --- Legend ---
+        // --- Category filter bar (above card list) ---
+        const filterBar = document.createElement('div');
+        filterBar.className = 'chicago-filter-bar';
+        cardList.parentElement.insertBefore(filterBar, cardList);
+
+        // --- Legend (map overlay) ---
         let activeCategory = null;
         const legend = document.createElement('div');
         legend.className = 'map-legend';
 
+        function toggleCategory(key) {
+          // Clear place selection
+          selectedIndex = null;
+          markers.forEach(({ el, card }) => { el.style.opacity = ''; card.classList.remove('active'); });
+
+          if (activeCategory === key) {
+            activeCategory = null;
+            markers.forEach(({ marker, card }) => { marker.addTo(map); card.style.display = ''; });
+            legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.remove('faded'));
+            filterBar.querySelectorAll('.chicago-filter-btn').forEach(btn => btn.classList.remove('active'));
+          } else {
+            activeCategory = key;
+            markers.forEach(({ marker, category, card }) => {
+              if (category === key) { marker.addTo(map); card.style.display = ''; }
+              else { marker.remove(); card.style.display = 'none'; }
+            });
+            legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.toggle('faded', li.dataset.category !== key));
+            filterBar.querySelectorAll('.chicago-filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.category === key));
+          }
+        }
+
         Object.entries(CATEGORIES).forEach(([key, cat]) => {
+          // Legend item
           const item = document.createElement('div');
           item.className = 'map-legend-item';
           item.dataset.category = key;
           item.innerHTML = `<span class="map-legend-dot" style="background:${cat.color}"></span>${cat.label}`;
-
-          item.addEventListener('click', () => {
-            // Clear place selection when using the legend
-            selectedIndex = null;
-            markers.forEach(({ el, card }) => { el.style.opacity = ''; card.classList.remove('active'); });
-
-            if (activeCategory === key) {
-              activeCategory = null;
-              markers.forEach(({ marker, card }) => { marker.addTo(map); card.style.display = ''; });
-              legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.remove('faded'));
-            } else {
-              activeCategory = key;
-              markers.forEach(({ marker, category, card }) => {
-                if (category === key) { marker.addTo(map); card.style.display = ''; }
-                else { marker.remove(); card.style.display = 'none'; }
-              });
-              legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.toggle('faded', li.dataset.category !== key));
-            }
-          });
-
+          item.addEventListener('click', () => toggleCategory(key));
           legend.appendChild(item);
+
+          // Filter bar button
+          const btn = document.createElement('button');
+          btn.className = 'chicago-filter-btn';
+          btn.dataset.category = key;
+          btn.innerHTML = `<span class="chicago-filter-dot" style="background:${cat.color}"></span>${cat.label}`;
+          btn.addEventListener('click', () => toggleCategory(key));
+          filterBar.appendChild(btn);
         });
 
         document.getElementById('chicago-map').appendChild(legend);
