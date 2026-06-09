@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <!-- MapLibre GL -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
     <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 <body>
@@ -142,12 +145,210 @@
             <p class="faq-footer-body">Feel free to reach out to us directly and we'd be happy to answer any questions you have.</p>
           </div>
         </div>
-      </section>  
+      </section>
     </section>
 
-    
+    <section class="chicago-section">
+      <div class="row g-0">
+        <div class="col-lg-6 chicago-map-col">
+          <div id="chicago-map"></div>
+        </div>
+        <div class="col-lg-6 chicago-content-col">
+          <h1 class="chicago-title">While you're here</h1>
+          <p class="chicago-subtitle">Here's some of our favorite things to do while you're visiting Chicago</p>
+          <div id="chicago-card-list" class="chicago-card-list"></div>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chicago Map -->
+    <script>
+      const PALETTE = {
+        land:      '#162716',
+        water:     '#43152b',
+        park:      '#1e4020',
+        building:  '#1c3020',
+        roadMajor: '#4f6f53',
+        roadMinor: '#1e3b1e',
+        label:     '#F4E8D2',
+        labelHalo: '#162716',
+      };
+
+      const CATEGORIES = {
+        venue:      { color: '#F4E8D2', label: 'Venue' },
+        hotel:      { color: '#4f6f53', label: 'Hotels' },
+        upscale:    { color: '#C4A44A', label: 'Upscale Dining' },
+        restaurant: { color: '#D4713C', label: 'Restaurants' },
+        bar:        { color: '#A0365A', label: 'Bars' },
+        activity:   { color: '#7EAF62', label: 'Activities' },
+      };
+
+      const PLACES = [
+        // Venue
+        { name: 'Beatnik West Town',            category: 'venue',      coords: [-87.6676898, 41.896189], description: 'Our wedding venue — and where we had our very first date. Come see where it all began.' },
+
+        // Hotels
+        { name: 'Hyatt Place Wicker Park',      category: 'hotel',      coords: [-87.6672841, 41.9103888], description: 'A short ride from the venue with great access to the neighbourhood.' },
+        { name: 'The Robey',                    category: 'hotel',      coords: [-87.678182, 41.9106217], description: 'A boutique hotel in a stunning 1920s art deco building on the Six Corners.' },
+        { name: "Ray's B&B",                    category: 'hotel',      coords: [-87.6827946, 41.9212855], description: 'A cosy local bed & breakfast within walking distance of Wicker Park.' },
+
+        // Upscale Dining
+        { name: "John's Food and Wine",         category: 'upscale',    coords: [-87.6489219, 41.9204421], description: 'A love letter to wine and seasonal cooking. One of Chicago\'s most celebrated restaurants.' },
+        { name: 'Jeong',                        category: 'upscale',    coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining from James Beard winners Johnny and Beverly Kim.' },
+        { name: 'Shō Omakase',                  category: 'upscale',    coords: [-87.6344103, 41.9101318], description: 'An intimate omakase experience with exceptional Japanese cuisine. Reserve well ahead.' },
+        { name: 'RPM Steak',                    category: 'upscale',    coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts and a buzzy atmosphere.' },
+        { name: 'Boka',                         category: 'upscale',    coords: [-87.6479958, 41.9135578], description: 'A perennial Chicago favourite. Seasonal American tasting menu in an elegant Lincoln Park setting.' },
+        { name: 'The Ives',                     category: 'upscale',    coords: [-87.624953, 41.8816533], description: 'A refined neighbourhood restaurant with a thoughtful menu and excellent cocktail programme.' },
+        { name: 'North Pond',                   category: 'upscale',    coords: [-87.6374222, 41.9298473], description: 'A beautiful Arts & Crafts building in Lincoln Park with pond views and stunning seasonal cuisine.' },
+
+        // Restaurants
+        { name: 'Le Bouchon',                   category: 'restaurant', coords: [-87.677763, 41.9175667], description: 'A cosy French bistro in Bucktown that\'s been a neighbourhood staple since 1993.' },
+        { name: 'Sun Wah BBQ',                  category: 'restaurant', coords: [-87.659694, 41.9739884], description: 'Beloved Cantonese BBQ in Uptown. The Peking duck carving is a full and glorious spectacle.' },
+        { name: 'MCCB',                         category: 'restaurant', coords: [-87.6336975, 41.8539136], description: 'Mapo Doufu, Chickens, Clams and Beer. Unpretentious Chinese cooking done brilliantly.' },
+        { name: "Pequod's Pizza (Deep Dish)",   category: 'restaurant', coords: [-87.6643863, 41.9219163], description: 'Chicago deep dish with a caramelised cheese crust. One of the city\'s best pies.' },
+        { name: 'Chengdu Impressions',          category: 'restaurant', coords: [-87.6697631, 41.9051578], description: 'Authentic Sichuan cuisine with bold, complex flavours. A favourite for spice lovers.' },
+        { name: "Chef's Special",               category: 'restaurant', coords: [-87.6873348, 41.9217623], description: 'A fun, relaxed spot with great cocktails and a menu full of crowd-pleasing comfort food.' },
+        { name: 'The Wormhole Coffee',          category: 'restaurant', coords: [-87.6746888, 41.9083283], description: 'A beloved Wicker Park coffee shop with a Back to the Future theme and excellent espresso.' },
+
+        // Bars
+        { name: 'TRUCE',                        category: 'bar',        coords: [-87.6774207, 41.9169911], description: 'A neighbourhood bar with great cocktails and a genuinely welcoming vibe.' },
+        { name: 'Chipp Inn',                    category: 'bar',        coords: [-87.6651355, 41.8970856], description: 'A classic Chicago dive bar with cheap drinks, pinball, and good company.' },
+        { name: 'Kingston Mines',               category: 'bar',        coords: [-87.6492146, 41.928708], description: 'Chicago\'s premier blues club, open late every night. Two stages, live music always playing.' },
+        { name: "Phyllis' Musical Inn",         category: 'bar',        coords: [-87.6725578, 41.9035016], description: 'A Wicker Park institution since 1953. No-frills dive bar with live music and real local charm.' },
+        { name: 'The Green Mill',               category: 'bar',        coords: [-87.6598913, 41.9691831], description: 'A legendary jazz club open since 1907. Once a Capone haunt, still the city\'s finest.' },
+
+        // Activities
+        { name: 'Chicago Magic Lounge',         category: 'activity',   coords: [-87.6683649, 41.974009], description: 'Cocktail bar and magic theatre in Andersonville — an unmissable Chicago original.' },
+        { name: 'Lakefront Trail',              category: 'activity',   coords: [-87.624906, 41.911249], description: '18 miles of paved trail along Lake Michigan. Perfect for a morning run or sunny afternoon cycle.' },
+        { name: '606 Trail',                    category: 'activity',   coords: [-87.66842731456504, 41.91465420477123], description: 'An elevated trail through four neighbourhoods, converted from an old railway line.' },
+        { name: 'Architecture Boat Tour',       category: 'activity',   coords: [-87.6234363240502, 41.88843125119183], description: 'The best way to see Chicago\'s iconic skyline. Narrated tours depart from the Riverwalk.' },
+        { name: 'Bears at Soldier Field',       category: 'activity',   coords: [-87.61673131861042, 41.862409054862354], description: 'While we\'re a Kansas City Chiefs household, the Bears are Chicago\'s NFL team. Catch a game the week after the wedding!' },
+        { name: 'The Art Institute of Chicago', category: 'activity',   coords: [-87.62242550511456, 41.87964301196217], description: 'World-class collection spanning 5,000 years of art. Don\'t miss the Impressionist galleries.' },
+      ];
+
+      const map = new maplibregl.Map({
+        container: 'chicago-map',
+        style: 'https://tiles.openfreemap.org/styles/positron',
+        center: [-87.6298, 41.8781],
+        zoom: 11,
+        scrollZoom: true,
+      });
+
+      map.on('load', () => {
+        map.getStyle().layers.forEach(layer => {
+          const id = layer.id.toLowerCase();
+          const type = layer.type;
+          try {
+            if (type === 'background') {
+              map.setPaintProperty(layer.id, 'background-color', PALETTE.land);
+            } else if (type === 'fill') {
+              let fillColor;
+              if (/water|ocean|lake|river|sea|pond|reservoir/.test(id)) {
+                fillColor = PALETTE.water;
+              } else if (/park|grass|wood|forest|garden|green|meadow|landcover/.test(id)) {
+                fillColor = PALETTE.park;
+              } else if (/building/.test(id)) {
+                fillColor = PALETTE.building;
+              } else {
+                fillColor = PALETTE.land;
+              }
+              map.setPaintProperty(layer.id, 'fill-color', fillColor);
+              map.setPaintProperty(layer.id, 'fill-outline-color', fillColor);
+            } else if (type === 'line') {
+              if (/water|river|canal|stream/.test(id)) {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.water);
+              } else if (/motorway|trunk|primary/.test(id)) {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.roadMajor);
+              } else {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.roadMinor);
+              }
+            } else if (type === 'symbol') {
+              if (/shield/.test(id)) {
+                map.setPaintProperty(layer.id, 'icon-opacity', 0);
+              }
+              map.setPaintProperty(layer.id, 'text-color', PALETTE.label);
+              map.setPaintProperty(layer.id, 'text-halo-color', PALETTE.labelHalo);
+            }
+          } catch (e) {}
+        });
+
+        // --- Place markers & cards ---
+        const cardList = document.getElementById('chicago-card-list');
+        const markers = []; // { marker, category, card }
+
+        PLACES.forEach((place, i) => {
+          // Card
+          const card = document.createElement('div');
+          card.className = 'chicago-card';
+          card.dataset.category = place.category;
+          card.innerHTML = `
+            <div class="chicago-card-dot" style="background:${CATEGORIES[place.category].color}"></div>
+            <p class="chicago-card-cat">${CATEGORIES[place.category].label}</p>
+            <p class="chicago-card-name">${place.name}</p>
+            <p class="chicago-card-desc">${place.description}</p>
+          `;
+          cardList.appendChild(card);
+
+          // Marker
+          const el = document.createElement('div');
+          el.className = 'map-marker' + (place.category === 'venue' ? ' map-marker-venue' : '');
+          el.style.backgroundColor = CATEGORIES[place.category].color;
+
+          el.addEventListener('click', () => {
+            markers.forEach(m => m.card.classList.remove('active'));
+            card.classList.add('active');
+            const scrollLeft = card.getBoundingClientRect().left - cardList.getBoundingClientRect().left + cardList.scrollLeft;
+            cardList.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+          });
+
+          const marker = new maplibregl.Marker({ element: el })
+            .setLngLat(place.coords)
+            .addTo(map);
+
+          markers.push({ marker, category: place.category, card });
+        });
+
+        // Lock the card list height before any filtering changes it
+        requestAnimationFrame(() => {
+          cardList.style.height = cardList.offsetHeight + 'px';
+        });
+
+        // --- Legend ---
+        let activeCategory = null;
+        const legend = document.createElement('div');
+        legend.className = 'map-legend';
+
+        Object.entries(CATEGORIES).forEach(([key, cat]) => {
+          const item = document.createElement('div');
+          item.className = 'map-legend-item';
+          item.dataset.category = key;
+          item.innerHTML = `<span class="map-legend-dot" style="background:${cat.color}"></span>${cat.label}`;
+
+          item.addEventListener('click', () => {
+            if (activeCategory === key) {
+              activeCategory = null;
+              markers.forEach(({ marker, card }) => { marker.addTo(map); card.style.display = ''; });
+              legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.remove('faded'));
+            } else {
+              activeCategory = key;
+              markers.forEach(({ marker, category, card }) => {
+                if (category === key) { marker.addTo(map); card.style.display = ''; }
+                else { marker.remove(); card.style.display = 'none'; }
+              });
+              legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.toggle('faded', li.dataset.category !== key));
+            }
+          });
+
+          legend.appendChild(item);
+        });
+
+        document.getElementById('chicago-map').appendChild(legend);
+      });
+    </script>
     
     <!-- FAQ Data and Generator -->
     <script>
@@ -180,6 +381,10 @@
         // {
         //   question: "How can I get to the venue?",
         //   answer: "The whole evening is happening at Beatnik West Town. We recommend taking a taxi or the bus to the venue – Beantik is conveniently located on Ashland & Chicago Ave, the intersection of two major bus lines."
+        // },
+        // {
+        //   question: "What should I do while I'm visiting Chicago?",
+        //   answer: "Chicago has <em>lots</em> to offer! In addition to all of the general "
         // },
         {
           question: "What's with 'where it all began'?",
