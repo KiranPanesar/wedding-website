@@ -169,7 +169,7 @@
     <script>
       const PALETTE = {
         land:      '#162716',
-        water:     '#43152b',
+        water:     '#2A4F72',
         park:      '#1e4020',
         building:  '#1c3020',
         roadMajor: '#4f6f53',
@@ -181,7 +181,6 @@
       const CATEGORIES = {
         venue:      { color: '#F4E8D2', label: 'Venue' },
         hotel:      { color: '#4f6f53', label: 'Hotels' },
-        upscale:    { color: '#C4A44A', label: 'Upscale Dining' },
         restaurant: { color: '#D4713C', label: 'Restaurants' },
         bar:        { color: '#A0365A', label: 'Bars' },
         activity:   { color: '#7EAF62', label: 'Activities' },
@@ -189,21 +188,16 @@
 
       const PLACES = [
         // Venue
-        { name: 'Beatnik West Town',            category: 'venue',      coords: [-87.6676898, 41.896189], description: 'Our wedding venue — and where we had our very first date. Come see where it all began.' },
-
-        // Hotels
-        { name: 'Hyatt Place Wicker Park',      category: 'hotel',      coords: [-87.6672841, 41.9103888], description: 'A short ride from the venue with great access to the neighbourhood.' },
-        { name: 'The Robey',                    category: 'hotel',      coords: [-87.678182, 41.9106217], description: 'A boutique hotel in a stunning 1920s art deco building on the Six Corners.' },
-        { name: "Ray's B&B",                    category: 'hotel',      coords: [-87.6827946, 41.9212855], description: 'A cosy local bed & breakfast within walking distance of Wicker Park.' },
+        { name: 'Beatnik West Town',            category: 'venue',      coords: [-87.6676898, 41.896189], description: 'Our wedding venue — and where we had our very first date. See you there on Oct 17th!' },
 
         // Upscale Dining
-        { name: "John's Food and Wine",         category: 'upscale',    coords: [-87.6489219, 41.9204421], description: 'A love letter to wine and seasonal cooking. One of Chicago\'s most celebrated restaurants.' },
-        { name: 'Jeong',                        category: 'upscale',    coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining from James Beard winners Johnny and Beverly Kim.' },
-        { name: 'Shō Omakase',                  category: 'upscale',    coords: [-87.6344103, 41.9101318], description: 'An intimate omakase experience with exceptional Japanese cuisine. Reserve well ahead.' },
-        { name: 'RPM Steak',                    category: 'upscale',    coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts and a buzzy atmosphere.' },
-        { name: 'Boka',                         category: 'upscale',    coords: [-87.6479958, 41.9135578], description: 'A perennial Chicago favourite. Seasonal American tasting menu in an elegant Lincoln Park setting.' },
-        { name: 'The Ives',                     category: 'upscale',    coords: [-87.624953, 41.8816533], description: 'A refined neighbourhood restaurant with a thoughtful menu and excellent cocktail programme.' },
-        { name: 'North Pond',                   category: 'upscale',    coords: [-87.6374222, 41.9298473], description: 'A beautiful Arts & Crafts building in Lincoln Park with pond views and stunning seasonal cuisine.' },
+        { name: "John's Food and Wine",         category: 'restaurant',    coords: [-87.6489219, 41.9204421], description: 'A love letter to wine and seasonal cooking. One of our favorite cozy restaurants. Reservations recommended.' },
+        { name: 'North Pond',                   category: 'restaurant',    coords: [-87.6374222, 41.9298473], description: 'Walk through the park and end up up at North Pond – upscale new American. Reservations recommended.' },
+        { name: 'Jeong',                        category: 'restaurant',    coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining tasting menu. Unbelievably delicious and chic. Reservations required.' },
+        { name: 'SHŌ Omakase',                  category: 'restaurant',    coords: [-87.6344103, 41.9101318], description: 'Our favorite Japanese restaurant in the city. Reservations required.' },
+        { name: 'RPM Steak',                    category: 'restaurant',    coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts.' },
+        { name: 'Boka',                         category: 'restaurant',    coords: [-87.6479958, 41.9135578], description: 'A Chicago staple. Seasonal American tasting menu in an elegant Lincoln Park setting.' },
+        { name: 'The Ives',                     category: 'restaurant',    coords: [-87.624953, 41.8816533], description: 'New addition on the scene. A dark, upscale supper club inside the beautiful Chicago Athletic Association building' },
 
         // Restaurants
         { name: 'Le Bouchon',                   category: 'restaurant', coords: [-87.677763, 41.9175667], description: 'A cosy French bistro in Bucktown that\'s been a neighbourhood staple since 1993.' },
@@ -228,6 +222,11 @@
         { name: 'Architecture Boat Tour',       category: 'activity',   coords: [-87.6234363240502, 41.88843125119183], description: 'The best way to see Chicago\'s iconic skyline. Narrated tours depart from the Riverwalk.' },
         { name: 'Bears at Soldier Field',       category: 'activity',   coords: [-87.61673131861042, 41.862409054862354], description: 'While we\'re a Kansas City Chiefs household, the Bears are Chicago\'s NFL team. Catch a game the week after the wedding!' },
         { name: 'The Art Institute of Chicago', category: 'activity',   coords: [-87.62242550511456, 41.87964301196217], description: 'World-class collection spanning 5,000 years of art. Don\'t miss the Impressionist galleries.' },
+
+        // Hotels
+        { name: 'Hyatt Place Wicker Park',      category: 'hotel',      coords: [-87.6672841, 41.9103888], description: 'A short ride from the venue with great access to the neighbourhood.' },
+        { name: 'The Robey',                    category: 'hotel',      coords: [-87.678182, 41.9106217], description: 'A boutique hotel, bar, and restaurant on the main intersection in Wicker Park. Head to the rooftop for a great view of the skyline.' },
+        { name: "Ray's B&B",                    category: 'hotel',      coords: [-87.6827946, 41.9212855], description: 'A cozy local bed & breakfast within walking distance of all the action Wicker Park has to offer.' },
       ];
 
       const map = new maplibregl.Map({
@@ -278,39 +277,63 @@
 
         // --- Place markers & cards ---
         const cardList = document.getElementById('chicago-card-list');
-        const markers = []; // { marker, category, card }
+        const markers = []; // { marker, category, card, coords }
+        let selectedIndex = null;
+        let markerJustClicked = false;
 
         PLACES.forEach((place, i) => {
           // Card
           const card = document.createElement('div');
           card.className = 'chicago-card';
           card.dataset.category = place.category;
+          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ' Chicago')}`;
           card.innerHTML = `
             <div class="chicago-card-dot" style="background:${CATEGORIES[place.category].color}"></div>
             <p class="chicago-card-cat">${CATEGORIES[place.category].label}</p>
             <p class="chicago-card-name">${place.name}</p>
             <p class="chicago-card-desc">${place.description}</p>
+            <a class="chicago-card-directions" href="${mapsUrl}" target="_blank" rel="noopener">Directions ↗</a>
           `;
+          card.addEventListener('click', () => selectPlace(i));
+          card.querySelector('.chicago-card-directions').addEventListener('click', e => e.stopPropagation());
           cardList.appendChild(card);
 
-          // Marker
+          // Marker — wrapper is owned by MapLibre (gets maplibregl-marker + opacity mgmt),
+          // el is our visual dot that we control independently for fading
+          const wrapper = document.createElement('div');
           const el = document.createElement('div');
           el.className = 'map-marker' + (place.category === 'venue' ? ' map-marker-venue' : '');
           el.style.backgroundColor = CATEGORIES[place.category].color;
+          wrapper.appendChild(el);
+          wrapper.addEventListener('click', () => { markerJustClicked = true; selectPlace(i); });
 
-          el.addEventListener('click', () => {
-            markers.forEach(m => m.card.classList.remove('active'));
-            card.classList.add('active');
-            const scrollLeft = card.getBoundingClientRect().left - cardList.getBoundingClientRect().left + cardList.scrollLeft;
-            cardList.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-          });
-
-          const marker = new maplibregl.Marker({ element: el })
+          const marker = new maplibregl.Marker({ element: wrapper })
             .setLngLat(place.coords)
             .addTo(map);
 
-          markers.push({ marker, category: place.category, card });
+          markers.push({ marker, el, category: place.category, card, coords: place.coords });
         });
+
+        function selectPlace(idx) {
+          if (selectedIndex === idx) {
+            selectedIndex = null;
+            markers.forEach(({ el, card }) => {
+              el.style.opacity = '';
+              card.classList.remove('active');
+            });
+            return;
+          }
+          selectedIndex = idx;
+          markers.forEach(({ el, card }, j) => {
+            el.style.opacity = j !== idx ? '0.15' : '';
+            card.classList.toggle('active', j === idx);
+          });
+          map.easeTo({ center: markers[idx].coords, zoom: Math.max(map.getZoom(), 13), duration: 900, essential: true });
+          const activeCard = markers[idx].card;
+          const paddingLeft = parseInt(getComputedStyle(cardList).paddingLeft) || 48;
+          const scrollLeft = activeCard.getBoundingClientRect().left - cardList.getBoundingClientRect().left + cardList.scrollLeft - paddingLeft;
+          cardList.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        }
 
         // Lock the card list height before any filtering changes it
         requestAnimationFrame(() => {
@@ -329,6 +352,10 @@
           item.innerHTML = `<span class="map-legend-dot" style="background:${cat.color}"></span>${cat.label}`;
 
           item.addEventListener('click', () => {
+            // Clear place selection when using the legend
+            selectedIndex = null;
+            markers.forEach(({ el, card }) => { el.style.opacity = ''; card.classList.remove('active'); });
+
             if (activeCategory === key) {
               activeCategory = null;
               markers.forEach(({ marker, card }) => { marker.addTo(map); card.style.display = ''; });
@@ -347,6 +374,11 @@
         });
 
         document.getElementById('chicago-map').appendChild(legend);
+
+        map.on('click', () => {
+          if (markerJustClicked) { markerJustClicked = false; return; }
+          if (selectedIndex !== null) selectPlace(selectedIndex);
+        });
       });
     </script>
     
