@@ -691,4 +691,13 @@ border: 2px solid #F4E8D2;
     margin-top: -10px;
     white-space: nowrap;
   }
+  .polaroid {
+    padding: 11px 11px 8px 11px;
+  }
+  .polaroid-bottom-left {
+    margin-top: 10%;
+  }
+  .polaroid-caption {
+    font-size: clamp(11px, 12cqi, 24px);
+  }
 }
