@@ -307,7 +307,21 @@ border: 2px solid #F4E8D2;
 /* Chicago / While You're Here Section */
 .chicago-section {
   padding-top: 0;
-  background-color: #162716;
+  background-image: url('../img/tile.jpg');
+  background-repeat: repeat;
+  background-size: 380px 380px;
+  position: relative;
+}
+.chicago-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 39, 22, 0.97);
+  z-index: 1;
+}
+.chicago-section > * {
+  position: relative;
+  z-index: 2;
 }
 .chicago-content-col {
   display: flex;
@@ -554,7 +568,21 @@ border: 2px solid #F4E8D2;
 }
 
 .contact-section {
-  background-color: #162716;
+  background-image: url('../img/tile.jpg');
+  background-repeat: repeat;
+  background-size: 380px 380px;
+  position: relative;
+}
+.contact-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(22, 39, 22, 0.97);
+  z-index: 1;
+}
+.contact-section > * {
+  position: relative;
+  z-index: 2;
 }
 .contact-section .container {
   padding-top: 60px;
