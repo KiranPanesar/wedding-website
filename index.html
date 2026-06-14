@@ -198,6 +198,7 @@
         venue:      { color: '#F4E8D2', label: 'Venue' },
         hotel:      { color: '#4f6f53', label: 'Hotels' },
         restaurant: { color: '#D4713C', label: 'Restaurants' },
+        breakfast:  { color: '#E8B84A', label: 'Breakfast' },
         bar:        { color: '#A0365A', label: 'Bars' },
         activity:   { color: '#7EAF62', label: 'Activities' },
       };
@@ -206,23 +207,34 @@
         // Venue
         { name: 'Beatnik West Town',            category: 'venue',      coords: [-87.6676898, 41.896189], description: 'Our wedding venue — and where we had our very first date. See you there on Oct 17th!' },
 
-        // Upscale Dining
-        { name: "John's Food and Wine",         category: 'restaurant',    coords: [-87.6489219, 41.9204421], description: 'Modern yet comforting fare. One of our favorite cozy restaurants. Reservations recommended.' },
-        { name: 'North Pond',                   category: 'restaurant',    coords: [-87.6374222, 41.9298473], description: 'Walk through the park and end up up at North Pond – upscale new American. Reservations recommended.' },
-        { name: 'Jeong',                        category: 'restaurant',    coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining tasting menu. Unbelievably delicious and chic. Reservations required.' },
-        { name: 'SHO Omakase',                  category: 'restaurant',    coords: [-87.6344103, 41.9101318], description: 'Our favorite Japanese restaurant in the city. Reservations required.' },
-        { name: 'RPM Steak',                    category: 'restaurant',    coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts.' },
-        { name: 'Boka',                         category: 'restaurant',    coords: [-87.6479958, 41.9135578], description: 'A Chicago staple. Seasonal American tasting menu in an elegant Lincoln Park setting. Reservations recommended.' },
-        { name: 'The Ives',                     category: 'restaurant',    coords: [-87.624953, 41.8816533], description: 'New addition on the scene. A dark, upscale supper club inside the beautiful Chicago Athletic Association building. Reservations recommended.' },
-
         // Restaurants
-        { name: 'Le Bouchon',                   category: 'restaurant', coords: [-87.677763, 41.9175667], description: 'Warm, packed, cozy and perfect. Enjoy the delicious wine and French cuisine in our neighborhood.' },
-        { name: 'Sun Wah BBQ',                  category: 'restaurant', coords: [-87.659694, 41.9739884], description: 'Cantonese BBQ in Uptown. You have to order The Peking duck – carved tableside!' },
-        { name: 'MCCB',                         category: 'restaurant', coords: [-87.6336975, 41.8539136], description: 'Our go-to Chinese delivery spot. Order to you, or go there and explore Chicago\'s Chinatown!' },
+        { name: 'Le Bouchon',                   category: 'restaurant', coords: [-87.677763, 41.9175667], description: 'Where we went on our 2nd date! Warm, packed, cozy and perfect. Enjoy the delicious wine and hearty French cuisine in our neighborhood.' },
         { name: "Pequod's Pizza (Deep Dish)",   category: 'restaurant', coords: [-87.6643863, 41.9219163], description: 'Chicago is famous for its deep dish pizza, and Pequods is the best spot!' },
+        { name: "John's Food and Wine",         category: 'restaurant', coords: [-87.6489219, 41.9204421], description: 'Modern yet comforting fare. One of our favorite cozy restaurants. Reservations recommended.' },
+        { name: 'Sun Wah BBQ',                  category: 'restaurant', coords: [-87.659694, 41.9739884], description: 'Cantonese BBQ in Uptown. You have to order The Peking duck – carved tableside!' },
+        { name: 'Jeong',                        category: 'restaurant', coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining tasting menu. Unbelievably delicious and chic. Reservations required.' },
+        { name: 'North Pond',                   category: 'restaurant', coords: [-87.6374222, 41.9298473], description: 'Walk through the park and end up up at North Pond – upscale new American. Reservations recommended.' },
+        { name: 'MCCB',                         category: 'restaurant', coords: [-87.6336975, 41.8539136], description: 'Our go-to Chinese delivery spot. Order to you, or go there and explore Chicago\'s Chinatown!' },
+        { name: 'SHO Omakase',                  category: 'restaurant', coords: [-87.6344103, 41.9101318], description: 'Our favorite Japanese restaurant in the city . Reservations required.' },
+        { name: 'RPM Steak',                    category: 'restaurant', coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts.' },
+        { name: 'Boka',                         category: 'restaurant', coords: [-87.6479958, 41.9135578], description: 'A Chicago staple. Seasonal American tasting menu in an elegant Lincoln Park setting. Reservations recommended.' },
+        { name: 'The Ives',                     category: 'restaurant', coords: [-87.624953, 41.8816533], description: 'New addition on the scene. A dark, upscale supper club inside the beautiful Chicago Athletic Association building. Reservations recommended.' },
         { name: 'Chengdu Impressions',          category: 'restaurant', coords: [-87.6697631, 41.9051578], description: 'Our favorite neighborhood Chinese restaurant, specializing in Sichuan cuisine.' },
         { name: "Chef's Special",               category: 'restaurant', coords: [-87.6873348, 41.9217623], description: 'A trendier spot for American Chinese food and strong cocktails.' },
-        { name: 'The Wormhole Coffee',          category: 'restaurant', coords: [-87.6746888, 41.9083283], description: 'Jane\'s favorite neighborhood coffeeshop!' },
+        { name: "Cindy's Rooftop",              category: 'restaurant', coords: [-87.62486095767154, 41.88191476947529], description: 'Rooftop bar and restaurant in the Chicago Athletic Association (same as The Ives). Step out onto their terrace to soak in the skyline, Millenium Park, and The Bean.' },
+        { name: "Margie's Candies",             category: 'restaurant', coords: [-87.68769568397568, 41.91744408038853], description: 'A Chicago institution since 1921. Classic Americana ice cream in a wonderfully unchanged setting — perfect after Chef\'s Special.' },
+        { name: 'Club Lucky',                   category: 'restaurant', coords: [-87.67371315980147, 41.91256457540877], description: 'Hearty, cozy Italian right in our neighbourhood. Red sauce, big portions, and a solid martini.' },
+        { name: 'Lilac Tiger & Coach House',    category: 'restaurant', coords: [-87.67168031163325, 41.90343996695414], description: 'Our favorite South Asian restaurant. Lilac Tiger is casual and walk-in friendly; Coachhouse in the back is an exceptional tasting menu,' },
+        { name: 'Mirra',                        category: 'restaurant', coords: [-87.67736229961851, 41.91793192062418], description: 'Delicious modern fusion of Mexican and Indian cuisine. Save room for the Rasmalai Tres Leches cake.' },
+
+        // Breakfast
+        { name: 'Cozy Corner (Logan Square)',   category: 'breakfast', coords: [-87.69701659143026, 41.92247375034331], description: "Jane's favorite breakfast spot. A cosy, no-fuss neighbourhood diner that always hits the spot." },
+        { name: "Dove's Luncheonette",  category: 'breakfast', coords: [-87.67728083096584, 41.90953809327154], description: 'Fantastic Tex-Mex breakfast and lunch in Wicker Park.' },
+        { name: "Uncle Mike's Place",   category: 'breakfast', coords: [-87.66978388493705, 41.89105241110229], description: 'Classic American-Filipino all-day breakfast – a neighbourhood gem.' },
+        { name: "Mindy's Bakery",       category: 'breakfast', coords: [-87.67810077659806, 41.91105839189334], description: 'Some of the best pastries in the city. Get there early – the line gets long but moves fast.' },
+        { name: 'The Wormhole Coffee',  category: 'breakfast', coords: [-87.6746888, 41.9083283], description: 'Jane\'s favorite neighborhood coffeeshop!' },
+        { name: 'Ann Sather',           category: 'breakfast', coords: [-87.65202807044288, 41.93990267178257], description: 'A Chicago classic. Swedish-American diner that has been a city institution for decades. You must get the cinnamon roll.' },
+        { name: "Janik's Cafe",         category: 'breakfast', coords: [-87.67776420213018, 41.90304512689344], description: 'Classic, no-frills breakfast with Mexican flavors. Simple, delicious, reliable, and there\'s always a seat.' },
 
         // Bars
         { name: 'TRUCE',                        category: 'bar',        coords: [-87.6774207, 41.9169911], description: 'Our favorite bar in Chicago – just steps from our house! We can usually be found here on Friday nights.' },
@@ -230,14 +242,21 @@
         { name: 'Kingston Mines',               category: 'bar',        coords: [-87.6492146, 41.928708], description: 'Chicago\'s premier blues club, open late every night. Two stages, live music always playing.' },
         { name: "Phyllis' Musical Inn",         category: 'bar',        coords: [-87.6725578, 41.9035016], description: 'A Wicker Park institution since 1953. No-frills dive bar with live music and real local charm.' },
         { name: 'The Green Mill',               category: 'bar',        coords: [-87.6598913, 41.9691831], description: 'A legendary jazz club open since 1907. Once a Capone haunt, still the city\'s finest.' },
+        { name: 'Blue Line Lounge & Bar',       category: 'bar',        coords: [-87.6777167245527, 41.90958054979496], description: '50s-style train car-inspired interior. A fun, laid-back spot for drinks and bar food in Logan Square.' },
+        { name: 'Estereo (Logan Square)',       category: 'bar',        coords: [-87.70219625276876, 41.92570134504486], description: 'A lively Logan Square bar with great music and strong drinks. Good energy any night of the week.' },
 
         // Activities
         { name: 'Chicago Magic Lounge',         category: 'activity',   coords: [-87.6683649, 41.974009], description: 'Truly mind-blowing performances. By far our #1 recommended activity for friends/family – Kiran\'s been <em>four</em> times.' },
-        { name: 'Lakefront Trail',              category: 'activity',   coords: [-87.624906, 41.911249], description: '18 miles of paved trail along Lake Michigan, navigating through Chicago\'s parks and beaches.' },
-        { name: '606 Trail',                    category: 'activity',   coords: [-87.66842731456504, 41.91465420477123], description: 'An elevated trail through four neighbourhoods, converted from an old railway line. We can usually be found running on here every day or two..' },
+        { name: '606 Trail',                    category: 'activity',   coords: [-87.66842731456504, 41.91465420477123], description: 'An elevated 2.7 mile trail cutting through our neighbourhood, converted from an old railway line. We can usually be found running on here every day or two.' },
         { name: 'Chicago Architecture Center Boat Tour', category: 'activity',   coords: [-87.6234363240502, 41.88843125119183], description: 'The best way to see Chicago\'s iconic skyline. Narrated tours depart from the Riverwalk.' },
-        { name: 'Bears at Soldier Field',       category: 'activity',   coords: [-87.61673131861042, 41.862409054862354], description: 'While we\'re a Kansas City Chiefs household, the Bears are Chicago\'s NFL team. Catch a game the week after the wedding!' },
+        { name: 'Lakefront Trail',              category: 'activity',   coords: [-87.624906, 41.911249], description: '18 miles of paved trail along Lake Michigan, navigating through Chicago\'s parks and beaches.' },
         { name: 'The Art Institute of Chicago', category: 'activity',   coords: [-87.62242550511456, 41.87964301196217], description: 'World-class collection spanning 5,000 years of art. Jane\'s favorite is the Stuart Davis collection, Kiran\'s is all the impressionism!' },
+        { name: 'Bears at Soldier Field',       category: 'activity',   coords: [-87.61673131861042, 41.862409054862354], description: 'While we\'re a Kansas City Chiefs household, the Bears are Chicago\'s NFL team (for now...). Catch a game the week after the wedding!' },
+        { name: 'Lincoln Park Zoo & Conservatory', category: 'activity', coords: [-87.63369404953578, 41.9217543483888], description: 'A free world-class zoo right in the heart of Lincoln Park. The adjoining conservatory is gorgeous in the autumn.' },
+        { name: 'Museum of Science & Industry', category: 'activity',   coords: [-87.58306209200215, 41.790615358650115], description: 'One of the largest science museums in the Western Hemisphere. A full day out in Hyde Park.' },
+        { name: 'Field Museum',                 category: 'activity',   coords: [-87.61699123096692, 41.86631689992131], description: 'Natural history at its finest – home to Sue, one of the most complete T. rex skeletons ever found.' },
+        { name: 'Wicker Park Farmers\' Market', category: 'activity',   coords: [-87.67708385728773, 41.90797254488862], description: 'Jane\'s favourite Sunday morning ritual – fresh produce, flowers, and sweet treats. Get there early!' },
+        { name: 'Walk Up Michigan Ave', category: 'activity',   coords: [-87.62401933005067, 41.889706694194636], description: 'Touristy? Yes... but amazing nonetheless. When Kiran first moved to Chicago, this walk and seeing all the skyscrapers was a formative experience, ' },
 
         // Hotels
         { name: 'Hyatt Place Wicker Park',      category: 'hotel',      coords: [-87.6672841, 41.9103888], description: 'A short ride from the venue with great access to the neighbourhood.' },
