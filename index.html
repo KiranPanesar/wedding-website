@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <!-- MapLibre GL -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
     <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
 <body>
@@ -36,7 +39,7 @@
                 <!-- RSVP Button Mobile -->
                 <div id="rsvp-container-mobile">
                   <div class="text-center rsvp-button">
-                    <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
+                    <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/janeandkiran/rsvp', '_blank')"><span>RSVP</span></button>
                   </div>
                 </div>
                 <div class="col-md-4 info-column">
@@ -49,13 +52,56 @@
             <!-- RSVP Button Desktop -->
             <div id="rsvp-container-desktop">
               <div class="text-center rsvp-button">
-                <button class="btn btn-primary btn-lg px-5 py-3" onclick="showMoreInfo()"><span>More Info</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/janeandkiran', '_blank')"><span>RSVP</span></button>
               </div>
               <div class="text-center more-info-button">
-                <button class="btn btn-primary btn-lg px-5 py-3"><span>Invitation & RSVP to Follow</span></button>
+                <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/janeandkiran', '_blank')"><span>Please complete by September 1st</span></button>
               </div>
             </div>
         </div>
+    </section>
+
+    <section class="registry-section">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-5 registry-content-col">
+            <h1 class="registry-title">Registry</h1>
+            <p class="registry-subtitle">Your presence is enough of a gift – but if you're interested...</p>
+            <div class="registry-button">
+              <button class="btn btn-primary btn-lg px-5 py-3" onclick="window.open('https://withjoy.com/janeandkiran/registry', '_blank')"><span>View Registry</span></button>
+            </div>
+          </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-6 registry-image-col">
+            <div class="polaroid-stack">
+              <div class="polaroid-group">
+                <div class="polaroid polaroid-left">
+                  <img src="img/kt.JPG" alt="Registry photo">
+                  <p class="polaroid-caption">First photo, 2018</p>
+                </div>
+                <div class="polaroid polaroid-center">
+                  <img src="img/kumano.jpg" alt="Registry photo">
+                  <p class="polaroid-caption">Hiking in Japan, 2023</p>
+                </div>
+                <div class="polaroid polaroid-right">
+                  <img src="img/sleepy.JPG" alt="Registry photo">
+                  <p class="polaroid-caption">Jetlagged in UK, 2022</p>
+                </div>
+              </div>
+              <div class="polaroid-group polaroid-group-bottom">
+                <div class="polaroid polaroid-bottom-left">
+                  <img src="img/party.jpg" alt="Registry photo">
+                  <p class="polaroid-caption">Housewarming, 2023</p>
+                </div>
+                <div class="polaroid polaroid-bottom-right">
+                  <img src="img/flossin.JPG" alt="Registry photo">
+                  <p class="polaroid-caption">Anniversary, 2023</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="more-info-section" id="more-info-section">
@@ -97,22 +143,294 @@
           <div class="col-md-1"></div>
         </div>
       </div>
-      <section class="faq-section">
+      <section class="faq-section" id="faq-section">
         <div class="container">
           <div class="faq-title-container">
             <h1 class="more-info-header">The Details</h1>
-            <h2 class="more-info-subheader">You've saved the date, now plan ahead!</h2>
+            <h2 class="more-info-subheader">You've RSVP'd, now plan your night!</h2>
           </div>
           <div class="accordion faq-accordion" id="faqAccordion">
             <!-- FAQ items will be generated here by JavaScript -->
           </div>
         </div>
-      </section>  
+      </section>
     </section>
 
-    
+    <section class="chicago-section">
+      <div class="row g-0">
+        <div class="col-lg-6 chicago-map-col order-2 order-lg-1">
+          <div id="chicago-map"></div>
+        </div>
+        <div class="col-lg-6 chicago-content-col order-1 order-lg-2">
+          <h1 class="chicago-title">While you're here</h1>
+          <p class="chicago-subtitle">Here's some of our favorite things to do while you're visiting Chicago</p>
+          <div id="chicago-card-list" class="chicago-card-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="faq-footer">
+          <p class="faq-footer-heading">Further Questions?</p>
+          <p class="faq-footer-body">Feel free to reach out to us directly and we'd be happy to answer any questions you have.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chicago Map -->
+    <script>
+      const PALETTE = {
+        land:      '#162716',
+        water:     '#2A4F72',
+        park:      '#1e4020',
+        building:  '#1c3020',
+        roadMajor: '#4f6f53',
+        roadMinor: '#1e3b1e',
+        label:     '#F4E8D2',
+        labelHalo: '#162716',
+      };
+
+      const CATEGORIES = {
+        venue:      { color: '#F4E8D2', label: 'Venue' },
+        hotel:      { color: '#4f6f53', label: 'Hotels' },
+        restaurant: { color: '#D4713C', label: 'Restaurants' },
+        breakfast:  { color: '#E8B84A', label: 'Breakfast' },
+        bar:        { color: '#A0365A', label: 'Bars' },
+        activity:   { color: '#7EAF62', label: 'Activities' },
+      };
+
+      const PLACES = [
+        // Venue
+        { name: 'Beatnik West Town',            category: 'venue',      coords: [-87.6676898, 41.896189], description: 'Our wedding venue — and where we had our very first date. See you there on Oct 17th!' },
+
+        // Restaurants
+        { name: 'Le Bouchon',                   category: 'restaurant', coords: [-87.677763, 41.9175667], description: 'Where we went on our 2nd date! Warm, packed, cozy and perfect. Enjoy the delicious wine and hearty French cuisine in our neighborhood.' },
+        { name: "Pequod's Pizza (Deep Dish)",   category: 'restaurant', coords: [-87.6643863, 41.9219163], description: 'Chicago is famous for its deep dish pizza, and Pequods is the best spot!' },
+        { name: "John's Food and Wine",         category: 'restaurant', coords: [-87.6489219, 41.9204421], description: 'Modern yet comforting fare. One of our favorite cozy restaurants. Reservations recommended.' },
+        { name: 'Sun Wah BBQ',                  category: 'restaurant', coords: [-87.659694, 41.9739884], description: 'Cantonese BBQ in Uptown. You have to order The Peking duck – carved tableside!' },
+        { name: 'Jeong',                        category: 'restaurant', coords: [-87.6648024, 41.8963076], description: 'Korean-American fine dining tasting menu. Unbelievably delicious and chic. Reservations required.' },
+        { name: 'North Pond',                   category: 'restaurant', coords: [-87.6374222, 41.9298473], description: 'Walk through the park and end up up at North Pond – upscale new American. Reservations recommended.' },
+        { name: 'MCCB',                         category: 'restaurant', coords: [-87.6336975, 41.8539136], description: 'Our go-to Chinese delivery spot. Order to you, or go there and explore Chicago\'s Chinatown!' },
+        { name: 'SHO Omakase',                  category: 'restaurant', coords: [-87.6344103, 41.9101318], description: 'Our favorite Japanese restaurant in the city . Reservations required.' },
+        { name: 'RPM Steak',                    category: 'restaurant', coords: [-87.6305965, 41.8895007], description: 'A sleek steakhouse in River North with dry-aged cuts.' },
+        { name: 'Boka',                         category: 'restaurant', coords: [-87.6479958, 41.9135578], description: 'A Chicago staple. Seasonal American tasting menu in an elegant Lincoln Park setting. Reservations recommended.' },
+        { name: 'The Ives',                     category: 'restaurant', coords: [-87.624953, 41.8816533], description: 'New addition on the scene. A dark, upscale supper club inside the beautiful Chicago Athletic Association building. Reservations recommended.' },
+        { name: 'Chengdu Impressions',          category: 'restaurant', coords: [-87.6697631, 41.9051578], description: 'Our favorite neighborhood Chinese restaurant, specializing in Sichuan cuisine.' },
+        { name: "Chef's Special",               category: 'restaurant', coords: [-87.6873348, 41.9217623], description: 'A trendier spot for American Chinese food and strong cocktails.' },
+        { name: "Cindy's Rooftop",              category: 'restaurant', coords: [-87.62486095767154, 41.88191476947529], description: 'Rooftop bar and restaurant in the Chicago Athletic Association (same as The Ives). Step out onto their terrace to soak in the skyline, Millenium Park, and The Bean.' },
+        { name: "Margie's Candies",             category: 'restaurant', coords: [-87.68769568397568, 41.91744408038853], description: 'A Chicago institution since 1921. Classic Americana ice cream in a wonderfully unchanged setting — perfect after Chef\'s Special.' },
+        { name: 'Club Lucky',                   category: 'restaurant', coords: [-87.67371315980147, 41.91256457540877], description: 'Hearty, cozy Italian right in our neighbourhood. Red sauce, big portions, and a solid martini.' },
+        { name: 'Lilac Tiger & Coach House',    category: 'restaurant', coords: [-87.67168031163325, 41.90343996695414], description: 'Our favorite South Asian restaurant. Lilac Tiger is casual and walk-in friendly; Coachhouse in the back is an exceptional tasting menu,' },
+        { name: 'Mirra',                        category: 'restaurant', coords: [-87.67736229961851, 41.91793192062418], description: 'Delicious modern fusion of Mexican and Indian cuisine. Save room for the Rasmalai Tres Leches cake.' },
+
+        // Breakfast
+        { name: 'Cozy Corner (Logan Square)',   category: 'breakfast', coords: [-87.69701659143026, 41.92247375034331], description: "Jane's favorite breakfast spot. A cosy, no-fuss neighbourhood diner that always hits the spot." },
+        { name: "Dove's Luncheonette",  category: 'breakfast', coords: [-87.67728083096584, 41.90953809327154], description: 'Fantastic Tex-Mex breakfast and lunch in Wicker Park.' },
+        { name: "Uncle Mike's Place",   category: 'breakfast', coords: [-87.66978388493705, 41.89105241110229], description: 'Classic American-Filipino all-day breakfast – a neighbourhood gem.' },
+        { name: "Mindy's Bakery",       category: 'breakfast', coords: [-87.67810077659806, 41.91105839189334], description: 'Some of the best pastries in the city. Get there early – the line gets long but moves fast.' },
+        { name: 'The Wormhole Coffee',  category: 'breakfast', coords: [-87.6746888, 41.9083283], description: 'Jane\'s favorite neighborhood coffeeshop!' },
+        { name: 'Ann Sather',           category: 'breakfast', coords: [-87.65202807044288, 41.93990267178257], description: 'A Chicago classic. Swedish-American diner that has been a city institution for decades. You must get the cinnamon roll.' },
+        { name: "Janik's Cafe",         category: 'breakfast', coords: [-87.67776420213018, 41.90304512689344], description: 'Classic, no-frills breakfast with Mexican flavors. Simple, delicious, reliable, and there\'s always a seat.' },
+
+        // Bars
+        { name: 'TRUCE',                        category: 'bar',        coords: [-87.6774207, 41.9169911], description: 'Our favorite bar in Chicago – just steps from our house! We can usually be found here on Friday nights.' },
+        { name: 'Chipp Inn',                    category: 'bar',        coords: [-87.6651355, 41.8970856], description: 'A classic Chicago dive bar in our old neighborhood with cheap drinks and good vibes.' },
+        { name: 'Kingston Mines',               category: 'bar',        coords: [-87.6492146, 41.928708], description: 'Chicago\'s premier blues club, open late every night. Two stages, live music always playing.' },
+        { name: "Phyllis' Musical Inn",         category: 'bar',        coords: [-87.6725578, 41.9035016], description: 'A Wicker Park institution since 1953. No-frills dive bar with live music and real local charm.' },
+        { name: 'The Green Mill',               category: 'bar',        coords: [-87.6598913, 41.9691831], description: 'A legendary jazz club open since 1907. Once a Capone haunt, still the city\'s finest.' },
+        { name: 'Blue Line Lounge & Bar',       category: 'bar',        coords: [-87.6777167245527, 41.90958054979496], description: '50s-style train car-inspired interior. A fun, laid-back spot for drinks and bar food in Logan Square.' },
+        { name: 'Estereo (Logan Square)',       category: 'bar',        coords: [-87.70219625276876, 41.92570134504486], description: 'A lively Logan Square bar with great music and strong drinks. Good energy any night of the week.' },
+
+        // Activities
+        { name: 'Chicago Magic Lounge',         category: 'activity',   coords: [-87.6683649, 41.974009], description: 'Truly mind-blowing performances. By far our #1 recommended activity for friends/family – Kiran\'s been <em>four</em> times.' },
+        { name: '606 Trail',                    category: 'activity',   coords: [-87.66842731456504, 41.91465420477123], description: 'An elevated 2.7 mile trail cutting through our neighbourhood, converted from an old railway line. We can usually be found running on here every day or two.' },
+        { name: 'Chicago Architecture Center Boat Tour', category: 'activity',   coords: [-87.6234363240502, 41.88843125119183], description: 'The best way to see Chicago\'s iconic skyline. Narrated tours depart from the Riverwalk.' },
+        { name: 'Lakefront Trail',              category: 'activity',   coords: [-87.624906, 41.911249], description: '18 miles of paved trail along Lake Michigan, navigating through Chicago\'s parks and beaches.' },
+        { name: 'The Art Institute of Chicago', category: 'activity',   coords: [-87.62242550511456, 41.87964301196217], description: 'World-class collection spanning 5,000 years of art. Jane\'s favorite is the Stuart Davis collection, Kiran\'s is all the impressionism!' },
+        { name: 'Bears at Soldier Field',       category: 'activity',   coords: [-87.61673131861042, 41.862409054862354], description: 'While we\'re a Kansas City Chiefs household, the Bears are Chicago\'s NFL team (for now...). Catch a game the week after the wedding!' },
+        { name: 'Lincoln Park Zoo & Conservatory', category: 'activity', coords: [-87.63369404953578, 41.9217543483888], description: 'A free zoo right in the heart of Lincoln Park. The adjoining conservatory is gorgeous in the autumn.' },
+        { name: 'Museum of Science & Industry', category: 'activity',   coords: [-87.58306209200215, 41.790615358650115], description: 'One of the largest science museums in the Western Hemisphere. A full day out in Hyde Park.' },
+        { name: 'Field Museum',                 category: 'activity',   coords: [-87.61699123096692, 41.86631689992131], description: 'Chicago\'s excellent natural history museum – home to Sue, one of the most complete T. rex skeletons ever found.' },
+        { name: 'Wicker Park Farmers\' Market', category: 'activity',   coords: [-87.67708385728773, 41.90797254488862], description: 'Jane\'s favourite Sunday morning ritual – fresh produce, flowers, and sweet treats. Get there early!' },
+
+        // Hotels
+        { name: 'Hyatt Place Wicker Park',      category: 'hotel',      coords: [-87.6672841, 41.9103888], description: 'A short ride from the venue with great access to the neighbourhood.' },
+        { name: 'The Robey',                    category: 'hotel',      coords: [-87.678182, 41.9106217], description: 'A boutique hotel, bar, and restaurant on the main intersection in Wicker Park. Head to the rooftop for a great view of the skyline.' },
+        { name: "Ray's B&B",                    category: 'hotel',      coords: [-87.6827946, 41.9212855], description: 'A cozy local bed & breakfast within walking distance of all the action Wicker Park has to offer.' },
+      ];
+
+      const map = new maplibregl.Map({
+        container: 'chicago-map',
+        style: 'https://tiles.openfreemap.org/styles/positron',
+        center: [-87.6298, 41.8781],
+        zoom: 11,
+        scrollZoom: true,
+      });
+
+      map.on('load', () => {
+        map.getStyle().layers.forEach(layer => {
+          const id = layer.id.toLowerCase();
+          const type = layer.type;
+          try {
+            if (type === 'background') {
+              map.setPaintProperty(layer.id, 'background-color', PALETTE.land);
+            } else if (type === 'fill') {
+              let fillColor;
+              if (/water|ocean|lake|river|sea|pond|reservoir/.test(id)) {
+                fillColor = PALETTE.water;
+              } else if (/park|grass|wood|forest|garden|green|meadow|landcover/.test(id)) {
+                fillColor = PALETTE.park;
+              } else if (/building/.test(id)) {
+                fillColor = PALETTE.building;
+              } else {
+                fillColor = PALETTE.land;
+              }
+              map.setPaintProperty(layer.id, 'fill-color', fillColor);
+              map.setPaintProperty(layer.id, 'fill-outline-color', fillColor);
+            } else if (type === 'line') {
+              if (/water|river|canal|stream/.test(id)) {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.water);
+              } else if (/motorway|trunk|primary/.test(id)) {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.roadMajor);
+              } else {
+                map.setPaintProperty(layer.id, 'line-color', PALETTE.roadMinor);
+              }
+            } else if (type === 'symbol') {
+              if (/shield/.test(id)) {
+                map.setPaintProperty(layer.id, 'icon-opacity', 0);
+              }
+              map.setPaintProperty(layer.id, 'text-color', PALETTE.label);
+              map.setPaintProperty(layer.id, 'text-halo-color', PALETTE.labelHalo);
+            }
+          } catch (e) {}
+        });
+
+        // --- Place markers & cards ---
+        const cardList = document.getElementById('chicago-card-list');
+        const markers = []; // { marker, category, card, coords }
+        let selectedIndex = null;
+        let markerJustClicked = false;
+
+        PLACES.forEach((place, i) => {
+          // Card
+          const card = document.createElement('div');
+          card.className = 'chicago-card';
+          card.dataset.category = place.category;
+          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ' Chicago')}`;
+          card.innerHTML = `
+            <div class="chicago-card-dot" style="background:${CATEGORIES[place.category].color}"></div>
+            <p class="chicago-card-cat">${CATEGORIES[place.category].label}</p>
+            <p class="chicago-card-name">${place.name}</p>
+            <p class="chicago-card-desc">${place.description}</p>
+            <a class="chicago-card-directions" href="${mapsUrl}" target="_blank" rel="noopener">Directions ↗</a>
+          `;
+          card.addEventListener('click', () => selectPlace(i));
+          card.querySelector('.chicago-card-directions').addEventListener('click', e => e.stopPropagation());
+          cardList.appendChild(card);
+
+          // Marker — wrapper is owned by MapLibre (gets maplibregl-marker + opacity mgmt),
+          // el is our visual dot that we control independently for fading
+          const wrapper = document.createElement('div');
+          const el = document.createElement('div');
+          el.className = 'map-marker' + (place.category === 'venue' ? ' map-marker-venue' : '');
+          el.style.backgroundColor = CATEGORIES[place.category].color;
+          wrapper.appendChild(el);
+          wrapper.addEventListener('click', () => { markerJustClicked = true; selectPlace(i); });
+
+          const marker = new maplibregl.Marker({ element: wrapper })
+            .setLngLat(place.coords)
+            .addTo(map);
+
+          markers.push({ marker, el, category: place.category, card, coords: place.coords });
+        });
+
+        function selectPlace(idx) {
+          if (selectedIndex === idx) {
+            selectedIndex = null;
+            markers.forEach(({ el, card }) => {
+              el.style.opacity = '';
+              card.classList.remove('active');
+            });
+            return;
+          }
+          selectedIndex = idx;
+          markers.forEach(({ el, card }, j) => {
+            el.style.opacity = j !== idx ? '0.15' : '';
+            card.classList.toggle('active', j === idx);
+          });
+          map.easeTo({ center: markers[idx].coords, zoom: Math.max(map.getZoom(), 13), duration: 900, essential: true });
+          const activeCard = markers[idx].card;
+          const paddingLeft = parseInt(getComputedStyle(cardList).paddingLeft) || 48;
+          const scrollLeft = activeCard.getBoundingClientRect().left - cardList.getBoundingClientRect().left + cardList.scrollLeft - paddingLeft;
+          cardList.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        }
+
+        // Lock the card list height before any filtering changes it
+        requestAnimationFrame(() => {
+          cardList.style.height = cardList.offsetHeight + 'px';
+        });
+
+        // --- Category filter bar (above card list) ---
+        const filterBar = document.createElement('div');
+        filterBar.className = 'chicago-filter-bar';
+        cardList.parentElement.insertBefore(filterBar, cardList);
+
+        // --- Legend (map overlay) ---
+        let activeCategory = null;
+        const legend = document.createElement('div');
+        legend.className = 'map-legend';
+
+        function toggleCategory(key) {
+          // Clear place selection
+          selectedIndex = null;
+          markers.forEach(({ el, card }) => { el.style.opacity = ''; card.classList.remove('active'); });
+
+          if (activeCategory === key) {
+            activeCategory = null;
+            markers.forEach(({ marker, card }) => { marker.addTo(map); card.style.display = ''; });
+            legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.remove('faded'));
+            filterBar.querySelectorAll('.chicago-filter-btn').forEach(btn => btn.classList.remove('active'));
+          } else {
+            activeCategory = key;
+            markers.forEach(({ marker, category, card }) => {
+              if (category === key) { marker.addTo(map); card.style.display = ''; }
+              else { marker.remove(); card.style.display = 'none'; }
+            });
+            legend.querySelectorAll('.map-legend-item').forEach(li => li.classList.toggle('faded', li.dataset.category !== key));
+            filterBar.querySelectorAll('.chicago-filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.category === key));
+          }
+        }
+
+        Object.entries(CATEGORIES).forEach(([key, cat]) => {
+          // Legend item
+          const item = document.createElement('div');
+          item.className = 'map-legend-item';
+          item.dataset.category = key;
+          item.innerHTML = `<span class="map-legend-dot" style="background:${cat.color}"></span>${cat.label}`;
+          item.addEventListener('click', () => toggleCategory(key));
+          legend.appendChild(item);
+
+          // Filter bar button
+          const btn = document.createElement('button');
+          btn.className = 'chicago-filter-btn';
+          btn.dataset.category = key;
+          btn.innerHTML = `<span class="chicago-filter-dot" style="background:${cat.color}"></span>${cat.label}`;
+          btn.addEventListener('click', () => toggleCategory(key));
+          filterBar.appendChild(btn);
+        });
+
+        document.getElementById('chicago-map').appendChild(legend);
+
+        map.on('click', () => {
+          if (markerJustClicked) { markerJustClicked = false; return; }
+          if (selectedIndex !== null) selectPlace(selectedIndex);
+        });
+      });
+    </script>
     
     <!-- FAQ Data and Generator -->
     <script>
@@ -126,30 +444,34 @@
           question: "What time should I arrive?",
           answer: "Please arrive at 6:30 PM for welcome cocktails. The ceremony will begin promptly at 7:00 PM."
         },
-        // {
-        //   question: "Can children attend?",
-        //   answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
-        // },
-        // {
-        //   question: "Can I bring a plus one?",
-        //   answer: "Please check your invitation for details about plus ones. If you have any questions, feel free to reach out to us directly."
-        // },
+        {
+          question: "Can children attend?",
+          answer: "The event is for adults only. Take the night off, and come out to celebrate with us!"
+        },
+        {
+          question: "Can I bring a plus one?",
+          answer: "Please check your <a href='https://withjoy.com/janeandkiran/rsvp' target='_blank'>RSVP page</a> for details about plus ones. If you have any questions, feel free to reach out to us directly."
+        },
         {
           question: "What should I wear?",
           answer: "Look sharp and stylish! Cocktail attire, but feel free to skip the tie."
+        },
+        {
+          question: "What's on the menu?",
+          answer: "Dinner will be served family style and feature a variety of Beatnik's delicious global fare, alongside a wonderful beverage program, and followed by dessert (or two)."
         },
         // {
         //   question: "How can I get to the venue?",
         //   answer: "The whole evening is happening at Beatnik West Town. We recommend taking a taxi or the bus to the venue – Beantik is conveniently located on Ashland & Chicago Ave, the intersection of two major bus lines."
         // },
+        // {
+        //   question: "What should I do while I'm visiting Chicago?",
+        //   answer: "Chicago has <em>lots</em> to offer! In addition to all of the general "
+        // },
         {
           question: "What's with 'where it all began'?",
           answer: "Our first date was at Beatnik! We first saw each other at the Chicago Ave crosswalk, sat in the atrium area (and shortly got booted out for not having a reservation), and then enjoyed a drink at the bar."
         },
-        {
-          question: "What if I still have questions?",
-          answer: "More information will be included in the formal invitation and RSVP. Until then, please feel free to reach out to us directly. We'd be happy to answer any questions you have."
-        }
       ];
 
       // Function to generate accordion HTML
